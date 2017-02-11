@@ -38,8 +38,7 @@ public class MainFragment extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //wait time
-                Toast.makeText(getContext(), "Not implemented", Toast.LENGTH_LONG).show();
+                listener.switchFragment(new WaitTimeFragment());
             }
         });
         Button button4 = (Button) view.findViewById(R.id.button4);
