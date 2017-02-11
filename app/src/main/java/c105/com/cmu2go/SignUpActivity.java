@@ -24,6 +24,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,6 +35,8 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPass;
     private EditText etConf;
+    private EditText etPhone;
+    private EditText etAndrew;
     private Button bReg;
     private FrameLayout spinHolder;
 
@@ -68,6 +72,8 @@ public class SignUpActivity extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.etEmail2);
         etPass = (EditText) findViewById(R.id.etPass2);
         etConf = (EditText) findViewById(R.id.etPassConf);
+        etPhone = (EditText) findViewById(R.id.etPhone);
+        etAndrew = (EditText) findViewById(R.id.etAndrew);
         bReg = (Button) findViewById(R.id.bRegister);
         bReg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +172,10 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                         Log.e("SIGN UP", task.getException().toString());
                     }
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference(getString(R.string.DIR_ACCOUNTS));
+                    myRef = myRef.child(mAuth.getCurrentUser().getUid());
+                    myRef.setValue(new Account(etAndrew.getText().toString(),etPhone.getText().toString()));
                 }
             });
             return null;
