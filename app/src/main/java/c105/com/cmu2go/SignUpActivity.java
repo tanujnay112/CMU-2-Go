@@ -81,8 +81,13 @@ public class SignUpActivity extends AppCompatActivity {
                 String email = etEmail.getText().toString();
                 String pass = etPass.getText().toString();
                 String pass2 = etConf.getText().toString();
+                String phone = etPhone.getText().toString();
                 Toast t;
-                switch (verify(email, pass, pass2)) {
+                switch (verify(email, pass, pass2, phone)) {
+                    case -3:
+                        t = Toast.makeText(SignUpActivity.this, "Phone number has to be 10 digits long.", Toast.LENGTH_SHORT);
+                        t.show();
+                        return;
                     case -2:
                         t = Toast.makeText(SignUpActivity.this, "Email is wrongly formatted.", Toast.LENGTH_SHORT);
                         t.show();
@@ -107,7 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private int verify(String email, String p1,String p2) {
+    private int verify(String email, String p1,String p2, String phone) {
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 
         Pattern pattern = Pattern.compile(regex);
@@ -119,6 +124,8 @@ public class SignUpActivity extends AppCompatActivity {
             return -1;
         if(p1.length()<6)
             return 0;
+        if(phone.length() != 10)
+            return -3;
         return 1;
     }
 

@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:hint="Confirm Password"
+        android:hint="Phone Number"
         android:id="@+id/etPhone"
         android:layout_gravity="center_horizontal" />
 
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="10"
-        android:hint="Confirm Password"
+        android:hint="Andrew ID"
         android:id="@+id/etAndrew"
         android:layout_gravity="center_horizontal" />
 
