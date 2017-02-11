@@ -9,26 +9,24 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeliverFragment extends Fragment {
+public class DeliverFragment2 extends Fragment {
     private FragmentSwitchListener listener;
+    private String location;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        location = getArguments().getString("location");
     }
 
     @Override
@@ -48,24 +46,26 @@ public class DeliverFragment extends Fragment {
         final ListView lv = (ListView) view.findViewById(R.id.lvLocs);
         final List<String> names = new ArrayList<>();
 
-        FirebaseDatabase.getInstance().getReference().child(getString(R.string.DIR_ORDERS)).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child(getString(R.string.DIR_ORDERS)).child(location).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final ArrayList<String> names = new ArrayList<String>();
+                final ArrayList<Order> names = new ArrayList<Order>();
                 for(DataSnapshot d : dataSnapshot.getChildren()){
-                    names.add(d.getKey());
+                    names.add(d.getValue(Order.class));
                 }
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Fragment food = new DeliverFragment2();
+                        Fragment food = new MainFragment();
                         Bundle args = new Bundle();
-                        args.putString("location", names.get(position));
+                        FirebaseDatabase.getInstance().getReference("Accounts").child(names.get(position).account).child("status").setValue(MainActivity.uid);
+                        FirebaseDatabase.getInstance().getReference().child("Accounts").child(MainActivity.uid).child("deliveries").setValue(names.get(position).account);
                         food.setArguments(args);
                         listener.switchFragment(food);
+                        Toast.makeText(getActivity(), "Keep your location on! You are being tracked by your target.", Toast.LENGTH_SHORT).show();
                     }
                 });
-                lv.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, names));
+                lv.setAdapter(new OrderAdapter(getContext(), names));
             }
 
             @Override

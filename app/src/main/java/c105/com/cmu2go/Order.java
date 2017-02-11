@@ -9,11 +9,21 @@ public class Order {
     public String place;
     public String food;
     public String location;
+    public String status;
 
-    Order(String a, String p, String f, String l){
+    Order(){
+        account = "";
+        place = "";
+        food = "";
+        location = "";
+        this.status = "";
+    }
+
+    Order(String a, String p, String f, String l, String status){
         account = a;
         place = p;
         food = f;
         location = l;
+        this.status = status;
     }
 }

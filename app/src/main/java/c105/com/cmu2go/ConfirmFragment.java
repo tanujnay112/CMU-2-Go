@@ -117,8 +117,9 @@ public class ConfirmFragment extends Fragment implements GoogleApiClient.OnConne
     private void sendOrder(String location, String order, String place) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(getString(R.string.DIR_ORDERS));
-        myRef = myRef.child(location);
-        myRef.setValue(new Order(MainActivity.uid, location, order, place));
+        String key = myRef.child(location).push().getKey();
+        myRef.child(location).child(key).setValue(new Order(MainActivity.uid, location, order, place, "-1"));
+        database.getReference().child("Accounts").child(MainActivity.uid).child(location).setValue(key);
     }
 
     @Override

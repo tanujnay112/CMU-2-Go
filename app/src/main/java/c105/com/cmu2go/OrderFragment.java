@@ -39,7 +39,7 @@ public class OrderFragment extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //status
+                listener.switchFragment(new StatusFragment());
             }
         });
         Button button4 = (Button) view.findViewById(R.id.button4);
