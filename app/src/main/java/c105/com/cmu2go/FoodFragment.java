@@ -6,14 +6,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  * Created by abel on 2/10/17.
  */
 
-public class OrderFragment extends Fragment {
+public class FoodFragment extends Fragment {
     private FragmentSwitchListener listener;
 
     @Override
@@ -34,28 +36,10 @@ public class OrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_order, container, false);
-        Button button2 = (Button) view.findViewById(R.id.button3);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //status
-            }
-        });
-        Button button4 = (Button) view.findViewById(R.id.button4);
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //im there
-            }
-        });
-        Button btn = (Button) view.findViewById(R.id.button2);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.switchFragment(new PlaceFragment());
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_food, container, false);
+        TextView text = (TextView) view.findViewById(R.id.textView);
+        text.setText(getArguments().getString("location"));
         return view;
     }
 }
+
