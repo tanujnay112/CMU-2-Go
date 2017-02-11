@@ -35,4 +35,15 @@
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/button4"
         android:layout_alignStart="@+id/button4" />
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Log Out"
+        android:onClick="waitClick"
+        android:id="@+id/bLogOut"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/button2"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2" />
 </RelativeLayout>

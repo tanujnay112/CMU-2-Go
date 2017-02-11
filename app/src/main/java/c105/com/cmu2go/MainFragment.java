@@ -1,12 +1,15 @@
 package c105.com.cmu2go;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainFragment extends Fragment {
     private FragmentSwitchListener listener;
@@ -49,6 +52,17 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //deliver
+            }
+        });
+
+        Button bLogOut = (Button) view.findViewById(R.id.bLogOut);
+        bLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
 
