@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity
 
                     //logIn(currentUser);
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + currentUser.getUid());
+                    MainActivity.uid = currentUser.getUid();
                 }else{
                     //LoginManager.getInstance().logOut();
                 }

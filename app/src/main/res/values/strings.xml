@@ -3,4 +3,7 @@
     <string name="BASE_URI">https://console.firebase.google.com/project/cmu2go-5143d</string>
     <string name="sign_up_text">Need an account? Sign up here.</string>
     <string name="DIR_ACCOUNTS">Accounts</string>
+    <string name="northeast">40.443885, -79.938895</string>
+    <string name="southwest">40.441566, -79.947663</string>
+    <string name="DIR_ORDERS">Orders</string>
 </resources>

@@ -63,11 +63,10 @@ public class FoodFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] choices = {spinner1.getSelectedItem().toString(), spinner2.getSelectedItem().toString(), spinner3.getSelectedItem().toString(),
-                        spinner4.getSelectedItem().toString(), spinner5.getSelectedItem().toString(), spinner6.getSelectedItem().toString()};
+                String choices = spinner1.getSelectedItem().toString()+ ", " +spinner2.getSelectedItem().toString()+ ", "+spinner3.getSelectedItem().toString() + ", " + spinner4.getSelectedItem().toString() + ", "+ spinner5.getSelectedItem().toString() + ", " + spinner6.getSelectedItem().toString();
                 Bundle args = new Bundle();
                 args.putString("location", getArguments().getString("location"));
-                args.putStringArray("choices", choices);
+                args.putString("choices", choices);
                 Fragment fragment = new ConfirmFragment();
                 fragment.setArguments(args);
                 listener.switchFragment(fragment);

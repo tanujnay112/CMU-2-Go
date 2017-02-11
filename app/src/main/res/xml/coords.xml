@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="northeast">40.443885, -79.938895</string>
+    <string name="southwest">40.441566, -79.947663</string>
+</resources>
