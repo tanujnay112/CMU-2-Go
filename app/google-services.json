@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "519622713893",
+    "firebase_url": "https://cmu2go-5143d.firebaseio.com",
+    "project_id": "cmu2go-5143d",
+    "storage_bucket": "cmu2go-5143d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519622713893:android:4c467c58e77adfda",
+        "android_client_info": {
+          "package_name": "c105.com.cmu2go"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "519622713893-88hbfugg40hplcmi0b4nqobo09c9qlpa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "c105.com.cmu2go",
+            "certificate_hash": "36B1C116524D796F05436F2C29B34A5536E3AF64"
+          }
+        },
+        {
+          "client_id": "519622713893-rke7c4ngs47la6navs1lrm42u5892g7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ9HLV3_up_HlurdsBajVx0zDPzjW3deo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "519622713893-rke7c4ngs47la6navs1lrm42u5892g7e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
