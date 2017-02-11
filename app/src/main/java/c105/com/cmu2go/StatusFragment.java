@@ -81,7 +81,7 @@ public class StatusFragment extends Fragment {
             public void onClick(View view) {
                 Bundle args = new Bundle();
                 args.putString("orderId",orderId);
-                Intent i = new Intent(getContext(), MapsActivity1.class);
+                Intent i = new Intent(getContext(), MapsActivity.class);
                 startActivity(i);
             }
         });
