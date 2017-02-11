@@ -52,6 +52,24 @@
         android:id="@+id/etPassConf"
         android:layout_gravity="center_horizontal" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:id="@+id/etPhone"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:id="@+id/etAndrew"
+        android:layout_gravity="center_horizontal" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
