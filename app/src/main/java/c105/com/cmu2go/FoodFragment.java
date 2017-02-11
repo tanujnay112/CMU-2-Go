@@ -44,27 +44,27 @@ public class FoodFragment extends Fragment {
         final Spinner spinner1 = (Spinner) view.findViewById(R.id.spinner1);
         spinner1.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new String[]{"Wheat spaghetti", "Campanelle", "Spinach fettucine", "Cheese fettucine", "Penne(Gluten-free)"}));
 
-        Spinner spinner2 = (Spinner) view.findViewById(R.id.spinner2);
+        final Spinner spinner2 = (Spinner) view.findViewById(R.id.spinner2);
         spinner2.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new String[]{"Spinach", "Mushrooms", "Peppers", "Onions", "Olives", "Broccolli", "Roasted Tomatoes", "Peas", "Egg plant", "Roasted Veggies"}));
 
-        Spinner spinner3 = (Spinner) view.findViewById(R.id.spinner3);
-        spinner2.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new String[]{"Spinach", "Mushrooms", "Peppers", "Onions", "Olives", "Broccolli", "Roasted Tomatoes", "Peas", "Egg plant", "Roasted Veggies"}));
+        final Spinner spinner3 = (Spinner) view.findViewById(R.id.spinner3);
+        spinner3.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new String[]{"Spinach", "Mushrooms", "Peppers", "Onions", "Olives", "Broccolli", "Roasted Tomatoes", "Peas", "Egg plant", "Roasted Veggies"}));
 
-        Spinner spinner4 = (Spinner) view.findViewById(R.id.spinner4);
-        spinner2.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new String[]{"Spinach", "Mushrooms", "Peppers", "Onions", "Olives", "Broccolli", "Roasted Tomatoes", "Peas", "Egg plant", "Roasted Veggies"}));
+        final Spinner spinner4 = (Spinner) view.findViewById(R.id.spinner4);
+        spinner4.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new String[]{"Spinach", "Mushrooms", "Peppers", "Onions", "Olives", "Broccolli", "Roasted Tomatoes", "Peas", "Egg plant", "Roasted Veggies"}));
 
-        Spinner spinner5 = (Spinner) view.findViewById(R.id.spinner5);
-        spinner3.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new String[]{"Grilled chicke", "Meatballs", "Tofu", "Shrimp"}));
+        final Spinner spinner5 = (Spinner) view.findViewById(R.id.spinner5);
+        spinner5.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new String[]{"Grilled chicke", "Meatballs", "Tofu", "Shrimp"}));
 
-        Spinner spinner6 = (Spinner) view.findViewById(R.id.spinner6);
-        spinner4.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new String[]{"Marinara", "Alfredo", "Creamy tomato rosa", "Pasta cream"}));
+        final Spinner spinner6 = (Spinner) view.findViewById(R.id.spinner6);
+        spinner6.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new String[]{"Marinara", "Alfredo", "Creamy tomato rosa", "Pasta cream"}));
 
         Button button = (Button) view.findViewById(R.id.button5);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] choices = {spinner1.getSelectedItem().toString(), spinner1.getSelectedItem().toString(), spinner1.getSelectedItem().toString(),
-                        spinner1.getSelectedItem().toString(), spinner1.getSelectedItem().toString(), spinner1.getSelectedItem().toString()};
+                String[] choices = {spinner1.getSelectedItem().toString(), spinner2.getSelectedItem().toString(), spinner3.getSelectedItem().toString(),
+                        spinner4.getSelectedItem().toString(), spinner5.getSelectedItem().toString(), spinner6.getSelectedItem().toString()};
                 Bundle args = new Bundle();
                 args.putString("location", getArguments().getString("location"));
                 args.putStringArray("choices", choices);
