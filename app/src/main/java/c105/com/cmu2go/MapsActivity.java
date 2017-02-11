@@ -18,11 +18,22 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.api.client.util.Data;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private ValueEventListener m;
+    private Marker mark;
+    private LocationManager mLocationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +88,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             -73.98180484771729));
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             Criteria criteria = new Criteria();
+            mark = mMap.addMarker((new MarkerOptions().position(sydney).title("Deliverer")));
+
 
             if (location != null)
             {
@@ -84,13 +97,74 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
-                        .zoom(100)                   // Sets the zoom
-                        .bearing(90)                // Sets the orientation of the camera to east
-                        .tilt(40)                   // Sets the tilt of the camera to 30 degrees
+                        .zoom(17)                   // Sets the zoom
+                        .bearing(0)                // Sets the orientation of the camera to east
                         .build();                   // Creates a CameraPosition from the builder
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             }
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         }
+        m = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String lat = "";
+                String lon = "";
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+                    if (d.getKey().equals("Latitude"))
+                        lat = d.getValue().toString();
+                    if (d.getKey().equals("Longitude"))
+                        lon = d.getValue().toString();
+                }
+                //mMap.clear();
+                    mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+                    Location location = getLastKnownLocation();
+                    double longitude = location.getLongitude();
+                    double latitude = location.getLatitude();
+                    LatLng sydney = new LatLng(latitude, longitude);
+                    LatLng deliverer = new LatLng(Double.parseDouble(lat), Double.parseDouble(lon));
+                    mark.setPosition(deliverer);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        FirebaseDatabase.getInstance().getReference("Locations").child("-KchDK7pOXooZSrdzZuz").addValueEventListener(m);
+    }
+    private Location getLastKnownLocation() {
+        mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
+        List<String> providers = mLocationManager.getProviders(true);
+        Location bestLocation = null;
+        for (String provider : providers) {
+            if (ContextCompat.checkSelfPermission(getApplication(),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(getParent(),
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        0);
+            }
+            Location l = mLocationManager.getLastKnownLocation(provider);
+            if (l == null) {
+                continue;
+            }
+            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                // Found best last known location: %s", l);
+                bestLocation = l;
+            }
+        }
+        return bestLocation;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(m != null)
+            FirebaseDatabase.getInstance().getReference("Locations").child("-KchDK7pOXooZSrdzZuz").removeEventListener(m);
     }
 }
